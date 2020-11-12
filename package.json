@@ -1,0 +1,41 @@
+{
+  "name": "simple_offline_manual",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    
+    "android": "yarn clean && yarn run-android",
+    "run-android": "npx react-native run-android",
+    "clean": "cd android && ./gradlew clean && cd ..",
+    "assemble-android": "cd android && ./gradlew assembleRelease && cd ..",
+    "bundle-android": "cd android && ./gradlew bundleRelease && cd ..",
+    "build-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/generated/res/",
+    "apk": "yarn build-android && yarn assemble-android",
+    "clean-apk": "yarn build-android && yarn clean && yarn assemble-android",
+    "aab": "yarn build-android && yarn bundle-android",
+    "clean-aab": "yarn build-android && yarn clean && yarn bundle-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/netinfo": "^5.9.7",
+    "react": "16.13.1",
+    "react-native": "0.63.3",
+    "react-native-offline": "^5.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.5.1",
+    "jest": "^25.1.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
